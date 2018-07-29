@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "3000:80"
+    volumes:
+        - ./code:/code
+        - ./site.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - tt-network
+  php:
+    image: php:7-fpm
+    volumes:
+        - ./code:/code
+    networks:
+      - tt-network
+
+networks:
+    tt-network:
+
